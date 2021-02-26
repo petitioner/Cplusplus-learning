@@ -1,0 +1,31 @@
+在MinGW或CygWin中使用“windres”命令来将.rc文件编译成目标文件，比如一条简单的编译命令：
+[plain] view plain copy
+windres demo.rc demo.o  
+
+　　得到此目标文件后即可与你原来的源程序一起进行编译得到最终可执行程序，比如举个最简单的例子你的源程序只有一个main.cpp，则你不需要使用.ico图标的时候编译命令简单的为：
+[plain] view plain copy
+g++ main.cpp -o main.exe  
+
+　　而想要给最终生成的main.exe加上.ico图标时的编译命令则为：
+[plain] view plain copy
+g++ main.cpp demo.o -o main.exe  
+
+　　最后上源码：
+//main.cpp
+[cpp] view plain copy
+#include <iostream>  
+#include <process.h>  
+using namespace std;  
+  
+int main()  
+{  
+    cout << "a demo for .rc file test" << endl;  
+    system("pause");  
+    return 0;  
+}  
+
+//demo.rc
+[cpp] view plain copy
+1 ICON "TEST.ico"  
+
+　　另还需要在源文件所在目录放置一.ico文件TEST.ico。
